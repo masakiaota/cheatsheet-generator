@@ -12,6 +12,10 @@ A tool to generate optimized cheat sheets from YAML hotkey definitions, designed
 - Multi-page support for large cheat sheets
 - Command-line interface with validation
 
+![Example](images/image.png)
+
+`.pdf` version of image above is in the repo (`hotkeys.pdf`)
+
 ## Installation
 
 ### Option 1: Install from source
