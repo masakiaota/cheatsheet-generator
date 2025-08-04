@@ -1,0 +1,318 @@
+title: "Developer's Ultimate Hotkey Cheat Sheet"
+
+config:
+  font_size: 7
+  header_font_size: 10
+  columns: 5
+  row_height: 11
+  margin: 18
+
+sections:
+  Tmux:
+    Session Management:
+      "tmux new -s <name>": "Create new named session"
+      "tmux ls": "List all sessions"
+      "tmux attach -t <name>": "Attach to named session"
+      "tmux kill-session -t <name>": "Kill named session"
+      "Ctrl-b d": "Detach from session"
+      "Ctrl-b s": "List and switch sessions"
+      "Ctrl-b $": "Rename current session"
+
+
+    Tmux Resurrect:
+      "Ctrl-b Ctrl-s": "Save tmux session"
+      "Ctrl-b Ctrl-r": "Restore tmux session"
+      "tmux-resurrect-save": "Save session manually"
+      "tmux-resurrect-restore": "Restore session manually"
+
+    Window Management:
+      "Ctrl-b c": "Create new window"
+      "Ctrl-b ,": "Rename current window"
+      "Ctrl-b w": "List and switch windows"
+      "Ctrl-b n": "Next window"
+      "Ctrl-b p": "Previous window"
+      "Ctrl-b &": "Kill current window"
+      "Ctrl-b 0-9": "Switch to window by number"
+      "Ctrl-b l": "Switch to last window"
+
+    Pane Management:
+      "Ctrl-b %": "Split window vertically"
+      "Ctrl-b \"": "Split window horizontally"
+      "Ctrl-b o": "Switch to next pane"
+      "Ctrl-b ;": "Switch to last pane"
+      "Ctrl-b x": "Kill current pane"
+      "Ctrl-b {": "Move pane left"
+      "Ctrl-b }": "Move pane right"
+      "Ctrl-b z": "Toggle pane zoom"
+      "Ctrl-b Space": "Toggle pane layouts"
+      "Ctrl-b Arrow": "Resize pane"
+
+    Copy Mode:
+      "Ctrl-b [": "Enter copy mode"
+      "q": "Exit copy mode"
+      "Space": "Start selection"
+      "Enter": "Copy selection"
+      "Ctrl-b ]": "Paste"
+      "v": "Begin selection (vi mode)"
+      "y": "Copy selection (vi mode)"
+      "C-u": "Page up"
+      "C-d": "Page down"
+
+
+    Advanced:
+      "Ctrl-b q": "Show pane numbers"
+      "Ctrl-b !": "Break pane to window"
+      "Ctrl-b f": "Find window by name"
+      "Ctrl-b .": "Move window"
+      "Ctrl-b (": "Previous session"
+      "Ctrl-b )": "Next session"
+
+  AstroVim:
+    Basic Navigation:
+      "h j k l": "Move left/down/up/right"
+      "w b e": "Next/previous/end word"
+      "W B E": "Next/previous/end WORD"
+      "0 ^ $": "Start/first-char/end of line"
+      "gg G": "Top/bottom of file"
+      "Ctrl-u Ctrl-d": "Page up/down"
+      "Ctrl-o Ctrl-i": "Jump back/forward"
+      "f F t T": "Find/to character forward/back"
+      "% zz zt zb": "Match bracket/center/top/bottom"
+
+    File Operations:
+      "<leader>ff": "Find files"
+      "<leader>fw": "Find word"
+      "<leader>fW": "Find word under cursor"
+      "<leader>fb": "Find buffers"
+      "<leader>fh": "Find help"
+      "<leader>fm": "Find marks"
+      "<leader>fo": "Find old files"
+      "<leader>fc": "Find commands"
+      "<leader>fk": "Find keymaps"
+      "<leader>ft": "Find todos"
+      "<leader>fr": "Find registers"
+      "<leader>fz": "Find in current buffer"
+
+    Terminal:
+      "<leader>tf": "Toggle float terminal"
+      "<leader>th": "Toggle horizontal terminal"
+      "<leader>tv": "Toggle vertical terminal"
+      "<leader>tt": "Toggle terminal"
+      "<C-\\>": "Quick terminal"
+      "Ctrl-h j k l": "Navigate terminal/editor"
+
+    Buffer Management:
+      "<leader>c": "Close buffer"
+      "<leader>C": "Force close buffer"
+      "]b [b": "Next/previous buffer"
+      "<leader>b": "Buffer picker"
+      "<leader>|": "Vertical split"
+      "<leader>\\": "Horizontal split"
+      "<leader>bp": "Pin buffer"
+      "<leader>bP": "Close non-pinned buffers"
+      "<leader>bd": "Close buffer & window"
+
+    LSP Features:
+      "gd": "Go to definition"
+      "gD": "Go to declaration"
+      "gr": "Go to references"
+      "gi": "Go to implementation"
+      "gt": "Go to type definition"
+      "K": "Hover documentation"
+      "<leader>ld": "Diagnostics"
+      "<leader>la": "Code actions"
+      "<leader>lr": "Rename"
+      "<leader>lf": "Format"
+      "<leader>lS": "Symbol outline"
+      "<leader>lR": "LSP restart"
+      "gl": "Line diagnostics"
+      "]d [d": "Next/previous diagnostic"
+
+    Git Integration:
+      "<leader>gg": "Lazygit"
+      "<leader>gt": "Git terminal"
+      "<leader>gc": "Git commits"
+      "<leader>gs": "Git status"
+      "<leader>gb": "Git branches"
+      "]g [g": "Next/previous git hunk"
+      "<leader>gh": "Git hunk preview"
+      "<leader>gH": "Git hunk reset"
+      "<leader>gS": "Git stage hunk"
+      "<leader>gU": "Git unstage hunk"
+
+    Neo-tree:
+      "<leader>e": "Toggle file explorer"
+      "<leader>o": "Focus file explorer"
+      "a": "Add file/directory"
+      "d": "Delete"
+      "r": "Rename"
+      "c": "Copy"
+      "x": "Cut"
+      "p": "Paste"
+      "y": "Copy name"
+      "Y": "Copy path"
+      "s": "Open in split"
+      "S": "Open in vsplit"
+      "t": "Open in tab"
+      "m": "Move"
+      "R": "Refresh"
+      "?": "Show help"
+
+
+    Sessions & UI:
+      "<leader>Sl": "Load session"
+      "<leader>Ss": "Save session"
+      "<leader>Sd": "Delete session"
+      "<leader>Sf": "Find session"
+      "<leader>u": "Toggle UI elements"
+      "<leader>un": "Toggle line numbers"
+      "<leader>us": "Toggle spellcheck"
+      "<leader>uw": "Toggle word wrap"
+      "<leader>uz": "Toggle zen mode"
+
+  Git:
+    # Basic Commands:
+    #   "git status": "Show working tree status"
+    #   "git add <file>": "Add file to staging"
+    #   "git add .": "Add all files to staging"
+    #   "git commit -m": "Commit with message"
+    #   "git commit -am": "Add and commit"
+    #   "git push": "Push to remote"
+    #   "git pull": "Pull from remote"
+    #   "git fetch": "Fetch from remote"
+
+    Branching:
+      "git branch": "List branches"
+      "git branch <name>": "Create branch"
+      "git checkout <branch>": "Switch branch"
+      "git checkout -b <name>": "Create and switch branch"
+      "git switch <branch>": "Switch branch (modern)"
+      "git switch -c <name>": "Create and switch (modern)"
+      "git merge <branch>": "Merge branch"
+      "git branch -d <name>": "Delete branch"
+
+    History and Inspection:
+      "git log": "Show commit history"
+      "git log --oneline": "Compact log"
+      "git log --graph": "Graph log"
+      "git show <commit>": "Show commit details"
+      "git diff": "Show unstaged changes"
+      "git diff --staged": "Show staged changes"
+      "git diff <commit>": "Compare with commit"
+      "git blame <file>": "Show line authors"
+
+    Stashing:
+      "git stash": "Stash current changes"
+      "git stash pop": "Apply and remove stash"
+      "git stash list": "List stashes"
+      "git stash apply": "Apply stash"
+      "git stash drop": "Delete stash"
+      "git stash -m": "Stash with message"
+
+    Undoing Changes:
+      "git reset <file>": "Unstage file"
+      "git reset --hard": "Reset to last commit"
+      "git revert <commit>": "Revert commit"
+      "git checkout -- <file>": "Discard file changes"
+      "git clean -fd": "Remove untracked files"
+
+  Terminal:
+    # Navigation:
+    #   "cd <dir>": "Change directory"
+    #   "pwd": "Print working directory"
+    #   "ls -la": "List files (detailed)"
+    #   "tree": "Directory tree"
+    #   "find <path> -name": "Find files"
+    #   "locate <name>": "Locate file"
+    #   "which <cmd>": "Find command location"
+    #   "whereis <cmd>": "Find binary/manual"
+
+    # File Operations:
+      # "cp <src> <dst>": "Copy file"
+      # "mv <src> <dst>": "Move/rename file"
+      # "rm <file>": "Remove file"
+      # "rm -rf <dir>": "Remove directory recursively"
+      # "mkdir -p <path>": "Create directory path"
+      # "touch <file>": "Create empty file"
+      # "ln -s <target> <link>": "Create symbolic link"
+      # "chmod <perms> <file>": "Change permissions"
+
+    Text Processing:
+      "cat <file>": "Display file content"
+      "less <file>": "View file paginated"
+      "head -n <file>": "First n lines"
+      "tail -f <file>": "Follow file changes"
+      "grep <pattern> <file>": "Search in file"
+      "sed 's/old/new/g'": "Replace text"
+      "awk '{print $1}'": "Extract columns"
+      "sort <file>": "Sort lines"
+      "uniq": "Remove duplicates"
+
+    Process Management:
+      "ps aux": "List all processes"
+      "top": "Real-time process monitor"
+      "htop": "Enhanced process monitor"
+      "kill <pid>": "Kill process by ID"
+      "killall <name>": "Kill by process name"
+      "jobs": "List background jobs"
+      "bg": "Send job to background"
+      "fg": "Bring job to foreground"
+      "nohup <cmd> &": "Run command detached"
+
+    System Information:
+      "df -h": "Disk space usage"
+      "du -sh <dir>": "Directory size"
+      "free -h": "Memory usage"
+      "uname -a": "System information"
+      "lscpu": "CPU information"
+      "lsblk": "Block devices"
+      "ip addr": "Network interfaces"
+      "ss -tuln": "Network connections"
+
+  Vim Motions:
+    Basic Movement:
+      "h j k l": "Left/down/up/right"
+      "w W": "Next word/WORD"
+      "b B": "Previous word/WORD"
+      "e E": "End of word/WORD"
+      "0 ^": "Start of line/first non-blank"
+      "$": "End of line"
+      "gg G": "First/last line"
+      "H M L": "Top/middle/bottom of screen"
+
+    Text Objects:
+      "iw aw": "Inner/a word"
+      "is as": "Inner/a sentence"
+      "ip ap": "Inner/a paragraph"
+      "i( a(": "Inner/a parentheses"
+      "i[ a[": "Inner/a brackets"
+      "i{ a{": "Inner/a braces"
+      "i\" a\"": "Inner/a quotes"
+      "it at": "Inner/a tag"
+
+    Editing:
+      "i a": "Insert before/after cursor"
+      "I A": "Insert at start/end of line"
+      "o O": "New line below/above"
+      "r R": "Replace char/enter replace mode"
+      "s S": "Substitute char/line"
+      "c<motion>": "Change motion"
+      "d<motion>": "Delete motion"
+      "y<motion>": "Yank motion"
+      "p P": "Paste after/before"
+
+    Visual Mode:
+      "v": "Character visual mode"
+      "V": "Line visual mode"
+      "Ctrl-v": "Block visual mode"
+      "gv": "Reselect last visual"
+      "o": "Move to other end of selection"
+
+    Search and Replace:
+      "/pattern": "Search forward"
+      "?pattern": "Search backward"
+      "n N": "Next/previous match"
+      "*": "Search word under cursor"
+      ":s/old/new/g": "Replace in line"
+      ":%s/old/new/g": "Replace in file"
+      ":noh": "Clear search highlight"
