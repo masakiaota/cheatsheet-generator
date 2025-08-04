@@ -11,15 +11,15 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v4.2.2
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5.1.0
       with:
         python-version: '3.11'
 
     - name: Install Poetry
-      uses: snok/install-poetry@v1
+      uses: snok/install-poetry@v1.3.4
       with:
         version: latest
         virtualenvs-create: true
@@ -32,7 +32,7 @@ jobs:
       run: poetry run pytest --cov=src/cheatsheet_generator --cov-report=xml
 
     - name: Upload coverage
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v4
       with:
         file: ./coverage.xml
 
@@ -44,15 +44,15 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v4.2.2
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5.1.0
       with:
         python-version: '3.11'
 
     - name: Install Poetry
-      uses: snok/install-poetry@v1
+      uses: snok/install-poetry@v1.3.4
       with:
         version: latest
         virtualenvs-create: true
@@ -97,7 +97,7 @@ jobs:
       shell: bash
 
     - name: Upload executable
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4.6.2
       with:
         name: cheatsheet-gen-${{ runner.os }}
         path: dist/${{ steps.exe_name.outputs.name }}
@@ -110,13 +110,16 @@ jobs:
       contents: write
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v4.2.2
 
     - name: Download all artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4.6.2
+      with:
+        pattern: cheatsheet-gen-*
+        merge-multiple: true
 
     - name: Create Release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2.3.2
       with:
         files: |
           cheatsheet-gen-Linux/cheatsheet-gen
