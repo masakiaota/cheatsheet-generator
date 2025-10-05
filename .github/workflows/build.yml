@@ -1,6 +1,7 @@
 name: Build Executables
 
 on:
+  workflow_dispatch:
   push:
     branches: [ main ]
     tags: [ 'v*' ]
@@ -35,94 +36,3 @@ jobs:
       uses: codecov/codecov-action@v4
       with:
         file: ./coverage.xml
-
-  build:
-    needs: test
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
-
-    steps:
-    - uses: actions/checkout@v4.2.2
-
-    - name: Set up Python
-      uses: actions/setup-python@v5.1.0
-      with:
-        python-version: '3.11'
-
-    - name: Install Poetry
-      uses: snok/install-poetry@v1.3.4
-      with:
-        version: latest
-        virtualenvs-create: true
-        virtualenvs-in-project: true
-
-    - name: Install dependencies
-      run: poetry install
-
-    - name: Install PyInstaller
-      run: poetry add --group dev pyinstaller
-
-    - name: Build executable (Linux/macOS)
-      if: runner.os != 'Windows'
-      run: |
-        poetry run pyinstaller --onefile --name cheatsheet-gen \
-          --add-data "src/cheatsheet_generator:cheatsheet_generator" \
-          --hidden-import=cheatsheet_generator.cli \
-          --hidden-import=cheatsheet_generator.parser \
-          --hidden-import=cheatsheet_generator.generator \
-          --hidden-import=cheatsheet_generator.models \
-          -c src/cheatsheet_generator/cli.py
-
-    - name: Build executable (Windows)
-      if: runner.os == 'Windows'
-      run: |
-        poetry run pyinstaller --onefile --name cheatsheet-gen.exe `
-          --add-data "src/cheatsheet_generator;cheatsheet_generator" `
-          --hidden-import=cheatsheet_generator.cli `
-          --hidden-import=cheatsheet_generator.parser `
-          --hidden-import=cheatsheet_generator.generator `
-          --hidden-import=cheatsheet_generator.models `
-          -c src/cheatsheet_generator/cli.py
-
-    - name: Set executable name
-      id: exe_name
-      run: |
-        if [ "${{ runner.os }}" = "Windows" ]; then
-          echo "name=cheatsheet-gen.exe" >> $GITHUB_OUTPUT
-        else
-          echo "name=cheatsheet-gen" >> $GITHUB_OUTPUT
-        fi
-      shell: bash
-
-    - name: Upload executable
-      uses: actions/upload-artifact@v4.6.2
-      with:
-        name: cheatsheet-gen-${{ runner.os }}
-        path: dist/${{ steps.exe_name.outputs.name }}
-
-  release:
-    if: startsWith(github.ref, 'refs/tags/v')
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
-    steps:
-    - uses: actions/checkout@v4.2.2
-
-    - name: Download all artifacts
-      uses: actions/download-artifact@v4.6.2
-      with:
-        pattern: cheatsheet-gen-*
-        merge-multiple: true
-
-    - name: Create Release
-      uses: softprops/action-gh-release@v2.3.2
-      with:
-        files: |
-          cheatsheet-gen-Linux/cheatsheet-gen
-          cheatsheet-gen-Windows/cheatsheet-gen.exe
-          cheatsheet-gen-macOS/cheatsheet-gen
-        generate_release_notes: true
