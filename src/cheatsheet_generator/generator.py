@@ -8,6 +8,8 @@ from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER, TA_LEFT
 from reportlab.lib.pagesizes import A4, landscape
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.cidfonts import UnicodeCIDFont
 from reportlab.platypus import (
     Frame,
     KeepTogether,
@@ -25,11 +27,30 @@ from cheatsheet_generator.models import CheatSheet, Hotkey
 class PDFGenerator:
     """Generates PDF cheat sheets from CheatSheet objects."""
 
+    _fonts_registered: bool = False
+    _font_name: str = "HeiseiKakuGo-W5"
+    _fallback_font_name: str = "Helvetica"
+
     def __init__(self, cheat_sheet: CheatSheet):
         """Initialize the PDF generator."""
         self.cheat_sheet = cheat_sheet
         self.config = cheat_sheet.config
+        self._ensure_japanese_font()
         self.styles = self._create_styles()
+
+    @classmethod
+    def _ensure_japanese_font(cls) -> None:
+        """Register the Japanese CID font once for all generators."""
+
+        if cls._fonts_registered:
+            return
+
+        try:
+            pdfmetrics.registerFont(UnicodeCIDFont(cls._font_name))
+        except Exception:
+            cls._font_name = cls._fallback_font_name
+        finally:
+            cls._fonts_registered = True
 
     def _create_styles(self) -> dict:
         """Create paragraph styles for the PDF."""
@@ -43,7 +64,7 @@ class PDFGenerator:
                 textColor=colors.black,
                 alignment=TA_CENTER,
                 spaceAfter=15,
-                fontName="Helvetica-Bold",
+                fontName=self._font_name,
             ),
             "section_header": ParagraphStyle(
                 "section_header",
@@ -55,7 +76,7 @@ class PDFGenerator:
                 spaceBefore=8,
                 leftIndent=0,
                 rightIndent=0,
-                fontName="Helvetica-Bold",
+                fontName=self._font_name,
                 borderWidth=1,
                 borderColor=colors.black,
                 borderPadding=4,
@@ -70,7 +91,7 @@ class PDFGenerator:
                 spaceAfter=3,
                 spaceBefore=5,
                 leftIndent=8,
-                fontName="Helvetica-Bold",
+                fontName=self._font_name,
             ),
             "hotkey": ParagraphStyle(
                 "hotkey",
@@ -80,7 +101,7 @@ class PDFGenerator:
                 alignment=TA_LEFT,
                 spaceAfter=1,
                 leftIndent=0,
-                fontName="Helvetica",
+                fontName=self._font_name,
             ),
         }
 
