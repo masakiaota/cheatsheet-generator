@@ -55,6 +55,12 @@ poetry run cheatsheet-gen hotkeys.yaml
 
 This will create `hotkeys.pdf` in the same directory.
 
+To organize your files, you can place YAML inputs in the `input_yaml/` directory and generate PDFs into the `output_pdf/` directory. For example:
+
+```bash
+poetry run cheatsheet-gen input_yaml/hotkeys.yaml -o output_pdf/hotkeys.pdf
+```
+
 ### Command Line Options
 
 ```bash
@@ -72,6 +78,9 @@ Options:
 ```bash
 # Generate PDF with custom output path
 poetry run cheatsheet-gen hotkeys.yaml -o my_cheatsheet.pdf
+
+# Generate PDF from input_yaml directory and output to output_pdf directory
+poetry run cheatsheet-gen input_yaml/hotkeys.yaml -o output_pdf/hotkeys.pdf
 
 # Validate YAML file without generating PDF
 poetry run cheatsheet-gen hotkeys.yaml --validate

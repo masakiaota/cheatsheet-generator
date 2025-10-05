@@ -76,3 +76,8 @@ Thumbs.db
 temp_*.yaml
 build/
 dist/
+
+input_yaml/*
+!input_yaml/hotkeys.yaml
+output_pdf/*
+!output_pdf/hotkeys.pdf
